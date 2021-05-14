@@ -1,23 +1,30 @@
+import React from 'react'
 import logo from './logo.svg';
 import './App.css';
 
+const Button = (props) => {
+    const { text, handleClick } = props
+
+    return <button onClick={handleClick}>{text}</button>
+}
+
+const MessagesWrapper = props => {
+    return props.messages.map((messageItem, index) => <div key={index}>{messageItem}</div>)
+}
+
 function App() {
+  let [messages, setMessages] = React.useState(["Hello!"])
+
+  const onButtonClick = () => {
+      console.log('clicked!', { messages })
+
+      setMessages([...messages, 'Hello again!'])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <MessagesWrapper messages={messages} />
+        <button onClick={onButtonClick}>My button</button>
     </div>
   );
 }
