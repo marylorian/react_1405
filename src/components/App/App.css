@@ -1,0 +1,40 @@
+.app {
+  padding: 40px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app__title {
+  padding-bottom: 36px;
+}
+
+.app__button {
+  padding: 32px;
+  background-color: #2196f3;
+  border-radius: 4px;
+  border-color: transparent;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 24px;
+}
+
+.app__button:hover {
+  background-color: #1769aa;
+  box-shadow: 0 0 4px 4px #4dabf5;
+}
+
+span {
+  font-size: 24px;
+}
+
+.child__bordered {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  border: 2px solid white;
+}
