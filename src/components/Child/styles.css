@@ -1,0 +1,36 @@
+.child__bordered {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* <-- Styles for MaterialUI TextField --> */
+.child__text-field label {
+    color: white;
+}
+.child__text-field input {
+    color: white;
+}
+.child__text-field input::placeholder {
+    color: white;
+}
+.child__text-field input:valid + fieldset,
+.child__text-field input:valid:hover + fieldset {
+    border-color: white;
+    border-width: 2px;
+}
+.child__text-field input:invalid + fieldset {
+    border-color: red;
+    border-width: 2px;
+}
+.child__text-field input:valid:focus + fieldset {
+    border-left-width: 6px;
+    padding: 4px !important; /* override inline-style */
+    border-color: #2196f3;
+}
+.child__text-field label.Mui-focused {
+    color: #2196f3;
+}
+/* <!-- Styles for MaterialUI TextField --> */
