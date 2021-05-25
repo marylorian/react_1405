@@ -1,5 +1,4 @@
-// Decorator
-
+// <-- Decorator -->
 const sum = (a, b) => a + b
 
 const withLogger = func => {
@@ -12,9 +11,9 @@ const withLogger = func => {
 const sumWithLogger = withLogger(sum)
 
 sumWithLogger(1, 2) // 3
+// <!-- Decorator -->
 
-// HOC = Higher Order Component
-
+// <-- HOC = Higher Order Component -->
 const Button = (props) => {
     const { className = "red" } = props
 
@@ -37,4 +36,4 @@ function example () {
         <Button label="I am Red" />
     </>
 }
-
+// <!-- HOC = Higher Order Component -->

@@ -4,6 +4,12 @@
     padding: 24px;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
+    margin-top: 24px;
+}
+
+.input-component {
+    display: flex;
+    align-items: baseline;
 }
 
 /* <-- Styles for MaterialUI TextField --> */
