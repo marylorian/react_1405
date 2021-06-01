@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {addChat} from "../../actions/chats";
+import {addChat, addChatThunk} from "../../actions/chats";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
 import TextField from "@material-ui/core/TextField";
@@ -16,7 +16,7 @@ const ChatListFunctionComponent = props => {
     }, [])
 
     const handleAddChat = useCallback(() => {
-        dispatch(addChat(newChatName))
+        dispatch(addChatThunk(newChatName))
     }, [dispatch, newChatName])
 
     return <div className="child__bordered">
@@ -88,7 +88,7 @@ class ChatListClassComponent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    chats: state.chats
+    chats: state.chats,
 })
 
 const mapDispatchToProps = (dispatch) =>

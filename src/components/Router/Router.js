@@ -15,10 +15,12 @@ export default class Router extends React.Component {
 
                 {/* Content as render function */}
                 <Route path="/chat/:id" render={
-                    () => <React.Fragment>
-                        <ChatFunctionComponent />
-                        <ChatClassComponent />
-                    </React.Fragment>
+                    ({ match }) => {
+                        return <React.Fragment>
+                            <ChatFunctionComponent />
+                            <ChatClassComponent chatId={match.params.id}/>
+                        </React.Fragment>
+                    }
                 } />
 
                 {/* Content as children */}

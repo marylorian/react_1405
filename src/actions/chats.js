@@ -8,3 +8,9 @@ export const addChat = (title) => {
         }
     }
 }
+
+export const addChatThunk = (title) => {
+    return async function (dispatch) {
+        dispatch(addChat(title))
+    }
+}

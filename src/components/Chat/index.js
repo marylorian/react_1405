@@ -90,7 +90,7 @@ export class ChatClassComponent extends React.Component {
 
     render() {
         return <div className="child__bordered">
-            <span>class component</span>
+            <span>class component with id {this.props.chatId}</span>
 
             {this.state.messages.map(
                 messageItem => (
