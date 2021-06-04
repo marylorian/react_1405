@@ -6,6 +6,7 @@
 - Урок 4: https://github.com/marylorian/react_1405/commit/a72f19a9d64befaa4a92df2a173cc13646787920
 - Урок 5: https://github.com/marylorian/react_1405/commit/21e380e36b544d058e11d8fee842baea3a5a05e3
 - Урок 6: https://github.com/marylorian/react_1405/commit/b6c1144d690a7b709865c5776be3067f7fbdfe6d
+- Урок 7: https://github.com/marylorian/react_1405/commit/556b4392ca1f6e37d09bcfce65f6174a8c3f8c47
 
 ## Не стесняйтесь выгрузить код с занятия и попробовать его менять у себя локально. Сделать это можно следующим образом:
 
