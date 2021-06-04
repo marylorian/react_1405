@@ -1,5 +1,5 @@
 .app {
-  padding: 40px;
+  padding: 0 40px;
   color: white;
 
   display: flex;
@@ -12,9 +12,15 @@
   padding-bottom: 36px;
 }
 
+.app__content {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .app__button {
   padding: 32px;
-  background-color: #2196f3;
+  background-color: var(--color-primary);
   border-radius: 4px;
   border-color: transparent;
   color: #fff;
@@ -24,8 +30,8 @@
 }
 
 .app__button:hover {
-  background-color: #1769aa;
-  box-shadow: 0 0 4px 4px #4dabf5;
+  background-color: var(--color-primary-active);
+  box-shadow: 0 0 4px 4px var(--color-primary-light);
 }
 
 span {
@@ -40,7 +46,7 @@ p {
 a {
   font-size: 24px;
   padding: 12px 0;
-  color: #4dabf5;
+  color: var(--color-primary-light);
 }
 
 a:hover {

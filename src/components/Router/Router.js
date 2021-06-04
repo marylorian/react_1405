@@ -1,10 +1,10 @@
 import React from "react";
 import {Route, Switch} from "react-router";
-import App from "../App";
 import '../App/App.css'
 import { ChatClassComponent, ChatFunctionComponent } from "../Chat";
 import { ProfileClassComponentConnected as ProfileClassComponent, ProfileFunctionComponent } from "../Profile";
 import Chats from "../Chats";
+import Home from "../Home";
 
 export default class Router extends React.Component {
     render() {
@@ -29,7 +29,9 @@ export default class Router extends React.Component {
                     <ProfileClassComponent />
                 </Route>
 
-                <Route exact path="/" component={App} />
+                <Route exact path="/">
+                    <Home />
+                </Route>
 
                 <Route>
                     <span>I don't know this url</span>

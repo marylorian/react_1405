@@ -1,22 +1,42 @@
 import React from 'react'
 import './App.css';
-import { Link } from 'react-router-dom'
-
-// mysite.ru/images/index - BrowserRouter
-// mysite.ru#images-page - HashRouter
+import Header from "../Header";
+import Router from "../Router/Router";
 
 export default class App extends React.Component {
+    componentDidMount() {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                const rand = Math.round(Math.random() * 100)
+
+                if (rand % 2 === 0) {
+                    resolve();
+                } else {
+                    reject();
+                }
+            }, 1000)
+        })
+
+        // success = fullfilled
+        // failed = rejected
+        promise
+            .then(() => console.log('success'))
+            .catch(err => console.log('error', err))
+
+        promise
+            .then(
+                () => console.log('!!success'),
+                () => console.log('!!error')
+            )
+    }
+
     render() {
         return (
             <div className="app">
-                <h1 className="app__title">React App - BrowserRouter</h1>
-
-                <Link to="/chat">Link to chat</Link>
-                <Link to="/profile">Link to profile</Link>
-                <Link to="/">Link to home page</Link>
-
-                <Link to="/chat/1"><b>Chat 1</b></Link>
-                <Link to="/chat/2"><b>Chat 2</b></Link>
+                <Header />
+                <div className="app__content">
+                    <Router />
+                </div>
             </div>
         );
     }
