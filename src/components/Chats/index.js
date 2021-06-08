@@ -1,9 +1,12 @@
 import React, {useCallback, useState} from "react";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {addChat, addChatThunk} from "../../actions/chats";
 import {Link} from "react-router-dom";
 import {bindActionCreators} from "redux";
+
 import TextField from "@material-ui/core/TextField";
+
+import {addChat, addChatThunk} from "../../actions/chats";
+import './styles.css'
 
 const ChatListFunctionComponent = props => {
     const [newChatName, setNewChatName] = useState('')
@@ -34,7 +37,7 @@ const ChatListFunctionComponent = props => {
         <button className="app__button" onClick={handleAddChat}>Добавить чат</button>
 
         {chats.list.map(chatItem => (
-            <div key={chatItem.id}>
+            <div key={chatItem.id} className={chatItem.isBlinking ? 'chats__chat-link_blinking' : ''}>
                 <Link to={`/chat/${chatItem.id}`}>
                     <span>{chatItem.title}</span>
                 </Link>
@@ -77,7 +80,7 @@ class ChatListClassComponent extends React.Component {
             <button className="app__button" onClick={this.handleAddChat}>Добавить чат</button>
 
             {chats.list.map(chatItem => (
-                <div key={chatItem.id}>
+                <div key={chatItem.id} className={chatItem.isBlinking ? 'chats__chat-link chats__chat-link_blinking' : 'chats__chat-link'}>
                     <Link to={`/chat/${chatItem.id}`}>
                         <span>{chatItem.title}</span>
                     </Link>

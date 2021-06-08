@@ -17,6 +17,7 @@ export default class Router extends React.Component {
                 <Route path="/chat/:id" render={
                     ({ match }) => {
                         return <React.Fragment>
+                            <Chats />
                             <ChatFunctionComponent />
                             <ChatClassComponent chatId={match.params.id}/>
                         </React.Fragment>

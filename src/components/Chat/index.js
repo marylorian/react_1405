@@ -3,19 +3,23 @@ import Input from "../Input/Input";
 import {SENDERS} from "../../constants";
 import usePrevious from "../../utils/usePrevious";
 import { useParams } from 'react-router-dom'
+import {connect, useDispatch, useSelector} from "react-redux";
+import {addMessage} from "../../actions/messages";
+import {selectMessagesByChatId} from "../../selectors/messages";
 
 /*  FUNCTION COMPONENT */
 
 export const ChatFunctionComponent = (props) => {
-    const [messages, setMessages] = React.useState([])
-    const prevMessages = usePrevious(messages)
-    const params = useParams()
+    const { id: chatId } = useParams()
     const timer = React.useRef(null)
 
+    const messages = useSelector(state => selectMessagesByChatId(state, { chatId }))
+    const dispatch = useDispatch()
+
+    const prevMessages = usePrevious(messages)
+
     const handleAddMessage = React.useCallback((newMessage) => {
-        setMessages(prevState => {
-            return [ ...prevState, newMessage ]
-        })
+        dispatch(addMessage({ message: newMessage, chatId }))
     }, [])
 
     React.useEffect(() => {
@@ -25,10 +29,15 @@ export const ChatFunctionComponent = (props) => {
             messages[messages.length - 1].sender === SENDERS.ME
         ) {
             timer.current = setTimeout(() => {
-                handleAddMessage({
-                    text: "I am robot",
-                    sender: SENDERS.BOT
-                })
+                dispatch(
+                    addMessage({
+                        message: {
+                            text: "I am robot",
+                            sender: SENDERS.BOT
+                        },
+                        chatId
+                    })
+                )
             }, 1000)
         }
     }, [messages, prevMessages, handleAddMessage])
@@ -41,7 +50,7 @@ export const ChatFunctionComponent = (props) => {
     }, [])
 
     return <div className="child__bordered">
-        <span>function component, with id {params.id}</span>
+        <span>function component, with id {chatId}</span>
 
         {messages.map(
             messageItem => (
@@ -57,17 +66,11 @@ export const ChatFunctionComponent = (props) => {
 
 /* CLASS COMPONENT */
 
-export class ChatClassComponent extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = { messages: [] }
-    }
-
+export class ChatClassComponentPure extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (
-            prevState.messages.length < this.state.messages.length &&
-            this.state.messages[this.state.messages.length - 1].sender === SENDERS.ME
+            prevProps.messages.length < this.props.messages.length &&
+            this.props.messages[this.props.messages.length - 1].sender === SENDERS.ME
         ) {
             this.timer = setTimeout(() => {
                 this.handleAddMessage({
@@ -83,16 +86,19 @@ export class ChatClassComponent extends React.Component {
     }
 
     handleAddMessage = (newMessage) => {
-        this.setState(prevState => {
-            return { messages: [ ...prevState.messages, newMessage ] }
+        this.props.addMessage({
+            message: newMessage,
+            chatId: this.props.chatId
         })
     }
 
     render() {
-        return <div className="child__bordered">
-            <span>class component with id {this.props.chatId}</span>
+        const { messages, chatId } = this.props
 
-            {this.state.messages.map(
+        return <div className="child__bordered">
+            <span>class component with id {chatId}</span>
+
+            {messages.map(
                 messageItem => (
                     <div className="message-item">
                         <span>{messageItem.sender}: {messageItem.text}</span>
@@ -104,3 +110,15 @@ export class ChatClassComponent extends React.Component {
         </div>
     }
 }
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        messages: selectMessagesByChatId(state, { chatId: ownProps.chatId })
+    }
+}
+
+const mapDispatchToProps = {
+    addMessage
+}
+
+export const ChatClassComponent = connect(mapStateToProps, mapDispatchToProps)(ChatClassComponentPure)
